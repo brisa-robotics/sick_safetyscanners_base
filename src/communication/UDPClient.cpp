@@ -153,7 +153,7 @@ sick::datastructure::PacketBuffer UDPClient::receive(sick::types::time_duration_
   m_socket.async_receive_from(
     boost::asio::buffer(m_recv_buffer),
     m_remote_endpoint,
-    boost::bind(&UDPClient::handleReceiveDeadline, _1, _2, &ec, &bytes_recv));
+    boost::bind(&UDPClient::handleReceiveDeadline,  boost::placeholders::_1,  boost::placeholders::_2, &ec, &bytes_recv));
 
   // Block until async_receive_from finishes or the deadline_timer exceeds its timeout.
   do
